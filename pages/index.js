@@ -16,10 +16,38 @@ import { AiOutlineHeart } from "react-icons/ai";
 import Image from "next/image";
 import postImg from "../public/img/pieces.jpg";
 import logoImg from "../public/img/netbil-logo.png";
-import { useState } from "react";
+import { LoremIpsum } from "lorem-ipsum";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [tabValue, setTabValue] = useState(0);
+  const [loremParagraph, setLoremParagraph] = useState("");
+  const [loremSentence, setLoremSentence] = useState("");
+  const [loremWord, setLoremWord] = useState("");
+
+  const lorem = new LoremIpsum({
+    sentencesPerParagraph: {
+      max: 5,
+      min: 4,
+    },
+    wordsPerSentence: {
+      max: 16,
+      min: 4,
+    },
+  });
+
+  useEffect(() => {
+    if (loremWord === "") {
+      setLoremWord(lorem.generateWords(3));
+    }
+    if (loremSentence === "") {
+      setLoremSentence(lorem.generateSentences(1));
+    }
+    if (loremParagraph === "") {
+      setLoremParagraph(lorem.generateParagraphs(1));
+    }
+  });
+
   return (
     <Box>
       <Box
@@ -32,13 +60,10 @@ export default function Home() {
         <Stack direction="row">
           <Grid container spacing={2}>
             <Grid item xs={2}>
-              <Image
-                src={logoImg}
-                alt="Imagem aleatória."
-                width={188}
-                height={78}
-              />
-            </Grid>{" "}
+              <Link href="https://www.netbil.com.br/">
+                <Image src={logoImg} alt="Netbil educacional." width={180} />
+              </Link>
+            </Grid>
             <Grid item xs={8}>
               <Tabs value={tabValue} centered>
                 <Tab
@@ -68,7 +93,6 @@ export default function Home() {
         </Stack>
       </Box>
 
-      {/* Home */}
       {tabValue === 0 ? (
         <Grid
           container
@@ -77,117 +101,106 @@ export default function Home() {
           paddingRight="15vh"
           align="justify"
         >
-          <Grid item xs={8} paddingRight="5vh">
+          <Grid item xs={9} paddingRight="10vh">
             <Box spacing={5} marginBottom={4}>
               <Stack spacing={5} direction="row">
                 <Box marginTop={1}>
-                  <Image
-                    src={postImg}
-                    alt="Imagem aleatória."
-                    width={350}
-                    height={250}
-                  />
+                  <Link href="#">
+                    <Image src={postImg} alt="Imagem aleatória." width={350} />
+                  </Link>
                 </Box>
                 <Stack spacing={2}>
                   <Link href="#" variant="h4" underline="hover" color="inherit">
-                    Lorem Ipsum.
+                    {loremWord}
                   </Link>
-                  <Typography>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining
-                    essentially unchanged. It was popularised in the 1960s with
-                    the release of Letraset sheets containing Lorem Ipsum
-                    passages, and more recently with desktop publishing software
-                    like Aldus PageMaker including versions of Lorem Ipsum.
-                  </Typography>
+                  <Typography>{loremParagraph}</Typography>
                 </Stack>
               </Stack>
             </Box>
+
             <Divider />
-            <Stack spacing={10} marginBottom={4} marginTop={4} direction="row">
+
+            <Stack spacing={6} marginBottom={4} marginTop={4} direction="row">
               <Box>
-                <Stack spacing={5}>
+                <Stack spacing={3}>
                   <Box marginTop={1}>
-                    <Image
-                      src={postImg}
-                      alt="Imagem aleatória."
-                      width={300}
-                      height={214}
-                    />
+                    <Link href="#">
+                      <Image
+                        src={postImg}
+                        alt="Imagem aleatória."
+                        width={300}
+                      />
+                    </Link>
                   </Box>
                   <Stack spacing={2}>
-                    <Typography variant="h4" component="h2">
-                      Lorem Ipsum.
-                    </Typography>
-                    <Typography>
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type and scrambled it to make a
-                      type specimen book. It has survived not only five
-                      centuries, but also the leap into electronic typesetting,
-                      remaining essentially unchanged. It was popularised in the
-                      1960s with the release of Letraset sheets containing Lorem
-                      Ipsum passages, and more recently with desktop publishing
-                      software like Aldus PageMaker including versions of Lorem
-                      Ipsum.
-                    </Typography>
+                    <Link
+                      href="#"
+                      variant="h5"
+                      underline="hover"
+                      color="inherit"
+                    >
+                      {loremWord}
+                    </Link>
+                    <Typography>{loremParagraph}</Typography>
                   </Stack>
                 </Stack>
               </Box>
+
               <Box>
-                <Stack spacing={5}>
+                <Stack spacing={3}>
                   <Box marginTop={1}>
-                    <Image
-                      src={postImg}
-                      alt="Imagem aleatória."
-                      width={300}
-                      height={214}
-                    />
+                    <Link href="#">
+                      <Image
+                        src={postImg}
+                        alt="Imagem aleatória."
+                        width={300}
+                      />
+                    </Link>
                   </Box>
                   <Stack spacing={2}>
-                    <Typography variant="h4" component="h2">
-                      Lorem Ipsum.
-                    </Typography>
-                    <Typography>
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type and scrambled it to make a
-                      type specimen book. It has survived not only five
-                      centuries, but also the leap into electronic typesetting,
-                      remaining essentially unchanged. It was popularised in the
-                      1960s with the release of Letraset sheets containing Lorem
-                      Ipsum passages, and more recently with desktop publishing
-                      software like Aldus PageMaker including versions of Lorem
-                      Ipsum.
-                    </Typography>
+                    <Link
+                      href="#"
+                      variant="h5"
+                      underline="hover"
+                      color="inherit"
+                    >
+                      {loremWord}
+                    </Link>
+                    <Typography>{loremParagraph}</Typography>
                   </Stack>
                 </Stack>
               </Box>
             </Stack>
           </Grid>
-          <Grid item xs={4} align="justify">
-            <Typography variant="h4" component="h3">
-              Veja também:
-            </Typography>
+
+          <Grid item xs={3} align="justify">
+            <Typography variant="h4">Veja também:</Typography>
             <Stack spacing={2} paddingTop="4vh">
-              <Typography>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was
-                popularised in the 1960s with the release of Letraset sheets
-                containing Lorem Ipsum passages, and more recently with desktop
-                publishing software like Aldus PageMaker including versions of
-                Lorem Ipsum.
-              </Typography>
+              <Box>
+                <Box marginTop={1} marginBottom={2} align="center">
+                  <Link href="#">
+                    <Image src={postImg} alt="Imagem aleatória." width={300} />
+                  </Link>
+                </Box>
+                <Link href="#" variant="h5" underline="hover" color="inherit">
+                  {loremWord}
+                </Link>
+                <Typography>{loremSentence}</Typography>
+              </Box>
+
+              <Divider />
+
+              <Box>
+                <Box marginTop={1} marginBottom={2} align="center">
+                  <Link href="#">
+                    <Image src={postImg} alt="Imagem aleatória." width={300} />
+                  </Link>
+                </Box>
+                <Link href="#" variant="h5" underline="hover" color="inherit">
+                  {loremWord}
+                </Link>
+                <Typography>{loremSentence}</Typography>
+              </Box>
             </Stack>
           </Grid>
         </Grid>
